@@ -17,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 use Inertia\Response;
 
 class UserController extends SettingsController
@@ -171,6 +172,7 @@ class UserController extends SettingsController
         Auth::login($newUser);
         session()->put('admin_user_id', $adminUserId);
         session()->put('locale', $old_locale);
+        Inertia::clearHistory();
         //return redirect()->route('admin.dashboard');
         $flash_notification = [
             "title" => __('flash_bugtrackly.user_connect_as_title'),

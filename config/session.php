@@ -214,4 +214,17 @@ return [
 
     'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Session Serialization
+    |--------------------------------------------------------------------------
+    |
+    | Explicitly kept at "php" (the pre-Laravel 13 default) so upgrading does
+    | not invalidate active sessions. Switching to "json" hardens against PHP
+    | deserialization gadget chain attacks but forces every user to re-login.
+    |
+    */
+
+    'serialization' => env('SESSION_SERIALIZATION', 'php'),
+
 ];

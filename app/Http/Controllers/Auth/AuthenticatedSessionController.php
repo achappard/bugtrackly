@@ -50,6 +50,7 @@ class AuthenticatedSessionController extends Controller
             Auth::guard('web')->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
+            Inertia::clearHistory();
             return redirect('/');
         }
     }
@@ -67,6 +68,7 @@ class AuthenticatedSessionController extends Controller
             session()->flush();
             session()->put('locale', $old_locale);
             Auth::login($newUser);
+            Inertia::clearHistory();
 
             $flash_notification = [
                 "title" => __('flash_bugtrackly.user_back_admin_title'),
